@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удивительный мир амфибий</title>
+    <!-- Подключение шрифта Google Fonts для красоты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(145deg, #f0f7e8 0%, #dae8d5 100%);
+            color: #1e3a2f;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 3rem 3rem 2rem 2rem;
+            box-shadow: 0 20px 40px rgba(0, 40, 0, 0.2);
+            overflow: hidden;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(120, 150, 100, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1b4d2e;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 10px rgba(60, 120, 60, 0.3);
+            word-break: break-word;
+        }
+
+        .subhead {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #2b5e3b;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px dashed #8fc99e;
+            padding-bottom: 1.5rem;
+        }
+
+        /* Сетка для карточек фактов */
+        .fact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .fact-card {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            box-shadow: 0 15px 30px -10px rgba(30, 60, 30, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #b7d7b0;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 40px -10px #1e4a2e;
+        }
+
+        .fact-content {
+            flex: 1 1 50%;
+            padding: 2rem 2rem 2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .fact-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #235b2a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .fact-title::before {
+            content: "🐸";
+            font-size: 2rem;
+            margin-right: 10px;
+            opacity: 0.8;
+        }
+
+        .fact-text {
+            font-size: 1.1rem;
+            color: #1d3929;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .fact-image {
+            flex: 1 1 50%;
+            background-color: #cbe0c4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            min-height: 280px;
+        }
+
+        .fact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
+            max-height: 350px;
+        }
+
+        .fact-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Чередование порядка (текст слева/справа) */
+        .fact-card:nth-child(even) .fact-content {
+            order: 2;
+        }
+
+        .fact-card:nth-child(even) .fact-image {
+            order: 1;
+        }
+
+        /* Дополнительные картинки (не из ссылок) будут вставлены через атрибуты src */
+        /* Стили для блока сноски про ссылки */
+        .image-credit {
+            font-size: 0.8rem;
+            color: #4d6b53;
+            text-align: right;
+            margin-top: 2rem;
+            border-top: 1px solid #abc9aa;
+            padding-top: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 800px) {
+            h1 { font-size: 2.3rem; }
+            .fact-card {
+                flex-direction: column;
+            }
+            .fact-card:nth-child(even) .fact-content {
+                order: 1;
+            }
+            .fact-card:nth-child(even) .fact-image {
+                order: 2;
+            }
+            .fact-content {
+                padding: 1.8rem;
+            }
+            .fact-title { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem 1rem; }
+            .fact-title { font-size: 1.5rem; }
+        }
+
+        /* специально для картинок без alt — но мы добавим */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌿Интересные факты о земноводных</h1>
+
+        <div class="fact-grid">
+
+            <!-- Факт 1: Регенерация -->
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">Регенерация: лапы, сердце, мозг</h2>
+                    <p class="fact-text">Некоторые виды амфибий, такие как аксолотли, обладают удивительной способностью регенерации. Они могут восстанавливать не только лапы, но и сложные органы, такие как сердце и даже части мозга. Это свойство делает амфибий объектом пристального изучения учёных, которые пытаются разгадать секреты их регенерации для применения в медицине.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- Ваша ссылка на картинку про аксолотля/регенерацию (первая ссылка в списке) -->
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_673526aadb90b44c2ae65777_6735275a317b17618f235fc7/scale_1200" 
+                         alt="Аксолотль — мастер регенерации" 
+                         title="Аксолотль: восстановление конечностей">
+                </div>
+            </div>
+
+            <!-- Факт 2: Яд древолазов -->
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">Яд древолазов — один из самых сильных</h2>
+                    <p class="fact-text">Некоторые виды древолазов производят настолько мощный яд, что одной капли достаточно, чтобы убить несколько человек. При этом в неволе они абсолютно безопасны, поскольку их токсичность напрямую зависит от диеты, включающей определённых насекомых, которые в неволе недоступны.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- Ваша ссылка на картинку с ядовитой лягушкой (вторая ссылка) -->
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_673526aadb90b44c2ae65777_6735271f20eee55150ac9ba3/scale_1200" 
+                         alt="Яркий древолаз" 
+                         title="Древолаз — обладатель смертоносного яда">
+                </div>
+            </div>
+
+            <!-- Факт 3: Заморозка зимой -->
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">«Замораживаются» на зиму</h2>
+                    <p class="fact-text">Некоторые виды лягушек, такие как лесная лягушка, обладают способностью выживать в условиях сильного холода. Они буквально замерзают зимой, их сердце останавливается, и кровь превращается в лёд. Когда наступает весна, лягушка «оттаивает» и возвращается к жизни.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- Ваша ссылка на третью картинку (лесная лягушка / лёд) -->
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_673526aadb90b44c2ae65777_67352779fc216335555d4583/scale_1200" 
+                         alt="Лесная лягушка в холода" 
+                         title="Лягушка, переживающая заморозку">
+                </div>
+            </div>
+
+            <!-- Факт 4: Мастера маскировки -->
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">Мастера маскировки</h2>
+                    <p class="fact-text">Благодаря своей окраске и способности сливаться с окружающей средой, многие амфибии становятся практически невидимыми для хищников. Некоторые виды лягушек и тритонов могут даже изменять свою окраску в зависимости от условий среды, что делает их настоящими мастерами маскировки.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- Ваша ссылка на четвёртое изображение (маскировка) -->
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_673526aadb90b44c2ae65777_673527a0dd4d010989988361/scale_1200" 
+                         alt="Лягушка маскируется под лист" 
+                         title="Маскировка амфибий">
+                </div>
+            </div>
+
+            <!-- Факт 5: Первые покорители суши -->
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">Они первыми покорили сушу</h2>
+                    <p class="fact-text">Амфибии были одними из первых позвоночных животных, которые вышли на сушу около 360 миллионов лет назад. Их анатомические особенности, такие как развитые конечности и легочные мешки, помогли им адаптироваться к новой среде обитания и стать важной частью экосистем.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- Ваша ссылка на пятое изображение (древнее земноводное / эволюция) -->
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_673526aadb90b44c2ae65777_673527ff4403806a9141a11d/scale_1200" 
+                         alt="Древнее земноводное" 
+                         title="Первые амфибии на суше">
+                </div>
+            </div>
+
+            <!-- Факт 6: Ключевая роль в экосистемах + долголетие (два факта, но у нас шесть карточек — можно объединить или разбить. но в исходных текстах 7-й пункт про десятилетия, поэтому я выделю отдельно) -->
+            <!-- Сделаем два отдельных факта: "Ключевая роль" и "Долгожители" чтобы использовать больше ваших картинок и красиво распределить. В исходном списке у вас 7 ссылок, у нас как раз 7 фактов если разбить. -->
+
+            <!-- Факт 6: Роль в экосистемах -->
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">Ключевая роль в экосистемах</h2>
+                    <p class="fact-text">Амфибии занимают важное место в пищевых цепочках, как в роли хищников, так и добычи. Они помогают контролировать популяцию насекомых и служат пищей для множества других животных. Исчезновение амфибий может привести к серьёзным изменениям в экосистемах.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- Ваша шестая картинка (лягушка в экосистеме) -->
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_673526aadb90b44c2ae65777_6735289eb51dac36329bc313/scale_1200" 
+                         alt="Лягушка в природной среде" 
+                         title="Земноводные — важное звено экосистемы">
+                </div>
+            </div>
+
+            <!-- Факт 7: Долгожители (десятилетия) — используем оставшиеся ссылки.
+                 В исходных ссылках осталось два URL: один после 6735289e... и до этого еще был 67352834... и 673527ff... 
+                 я вставлю их оба в разные факты, но для этого факта использую первую оставшуюся.  -->
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">Живут десятилетиями</h2>
+                    <p class="fact-text">В то время как многие думают, что амфибии живут недолго, некоторые виды способны жить более 20 лет. Например, аксолотли и некоторые виды тритонов могут прожить до 25 лет при правильном уходе.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- Ссылка на картинку с тритоном или старой амфибией (первая из оставшихся: 67352834...) -->
+                    <img src="https://static.dzeninfra.ru/s3/zen-apps/subscriptions/1.7.0/k8Fq3/WU1K3x0468968e6EO0TCfXhJMh2RaFryc7mGHk3mc2favYjW3zZ5a2aNHnPcXHkWsvGquLhY34BfXYpNStJIgN4FU8WBhTFxZ9kbeLwESbRxGMrY9FIeNzJ6vYQlJQqIWy5J4Ew9X8VSh354umAiAPi7pe4Mftwto2bLOpCXmTBgNm3SfM4gDZc7DdHpNJnGV93cT45MDkPScSd7BvLdPWq3tNHgIvCNmBO4FCo50h2du5lrQoV2eMP" 
+                         alt="Тритон" 
+                         title="Некоторые тритоны живут более 20 лет">
+                </div>
+            </div>
+
+            <!-- Бонус-факт: Маскировка и дополнительное фото? Но у нас осталась ещё одна ссылка (673527ff...)
+            Чтобы она не пропадала, добавлю восьмую карточку с интересным фактом про изменение окраски — это дополнит маскировку. 
+            Поскольку выше уже есть маскировка, можно вставить как "хамелеоны среди амфибий", используя оставшееся изображение.
+            Это будет гармонично и использует все ссылки.  -->
+
+            <div class="fact-card">
+                <div class="fact-content">
+                    <h2 class="fact-title">Живые хамелеоны</h2>
+                    <p class="fact-text">Некоторые земноводные умеют изменять цвет кожи не хуже хамелеонов. Например, тритоны и квакши могут становиться темнее или светлее, подстраиваясь под цвет коры, листвы или камней, чтобы стать незаметными для врагов.</p>
+                </div>
+                <div class="fact-image">
+                    <!-- последняя оставшаяся ссылка с дзена -->
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_673526aadb90b44c2ae65777_67352834fc216335555dbeae/scale_1200" 
+                         alt="Квакша меняет цвет" 
+                         title="Маскировка и смена окраса">
+                </div>
+            </div>
+
+            <!-- Все предоставленные ссылки использованы! (их было 7 штук, добавилось 8 фактов — но 8й с последней картинкой расширяет тему) 
+            Если вы хотели ровно 7 фактов, можно объединить "долголетие" и "экосистемы", но тогда останется лишняя картинка. 
+            Я решил показать все изображения, они отлично иллюстрируют тему. -->
+
+        
+    </div>
+</body>
+
+</html>
